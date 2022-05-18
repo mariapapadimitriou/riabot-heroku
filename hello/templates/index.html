@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiaBot</title>
+    
+    <link rel="shortcut icon" href="../static/icon.png"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
+
+    <link href="https://fonts.cdnfonts.com/css/pink-rocket" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/rtf8fya.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/site.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/slider.css"/>
+  </head>
+  <body>
+    <nav>
+      <div class="row" style="justify-content: flex-start;">
+        <img src="../static/icon.png">
+        <h2 style="margin-left: 20px">RiaBot</h2>
+      </div>
+      <div class="row promptinput">
+        <form>
+          <input type="text" id="prompt" name="prompt" placeholder="Ask me anything..." autocomplete="off">
+          <input class="btn" type="button" value="Submit" onclick="getResponse()">
+        </form>
+      </div>
+    </nav>
+    <main class="container">
+      <div class="left">
+        <h2 style="background-color: white;">Settings&nbsp;</h2>
+        <div class="settings">
+          <div class="col">
+            <div class="iconscontainer">
+              <b>Purpose&nbsp;&nbsp;&nbsp;</b>
+              <div class="icon">
+                <h2><i class="fa-solid fa-circle-info fa-gradient" style="font-size: 20px;"></i></h2>
+                <span>
+                  Make the app specific to a single purpose.
+                </span>
+              </div>
+            </div>
+            <select class="selectpicker" id="purposepicker" onchange="fillPrompt(this)">
+              <option selected>Default</option>
+              <option>Classification</option>
+              <option>Generation</option>
+              <option>Translation</option>
+              <option>Conversion</option>
+              <option>Summarization</option>
+              <option>Completion</option>
+              <option>Factual Responses</option>
+            </select>       
+          </div>
+          <div class="col">
+            <div class="iconscontainer">
+              <b>Engine&nbsp;&nbsp;&nbsp;</b>
+              <div class="icon">
+                <h2><i class="fa-solid fa-circle-info fa-gradient" style="font-size: 20px;"></i></h2>
+                <span>
+                  Choose the AI engine to run (default curie)
+                </span>
+              </div>
+            </div>
+            <select class="selectpicker" id="engineselect">
+              <option>text-davinci-002</option>
+              <option selected>text-curie-001</option>
+              <option>text-babbage-001	</option>
+              <option>text-ada-001</option>
+            </select>      
+          </div>
+          <div class="col">
+            <div class="iconscontainer">
+              <b>Max Tokens&nbsp;&nbsp;&nbsp;</b>
+              <div class="icon">
+                <h2><i class="fa-solid fa-circle-info fa-gradient" style="font-size: 20px;"></i></h2>
+                <span>
+                  The maximum number of tokens to generate in the completion. The token count of your prompt plus max_tokens cannot exceed the model's context length.
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <input type="range" id="maxwords" value="16" min="1" max="2048" oninput="maxwords_output.value=value"/>
+              <output id="maxwords_output">16</output>
+            </div>
+          </div>
+          <div class="col">
+            <div class="iconscontainer">
+              <b>Temperature&nbsp;&nbsp;&nbsp;</b>
+              <div class="icon">
+                <h2><i class="fa-solid fa-circle-info fa-gradient" style="font-size: 20px;"></i></h2>
+                <span>
+                  What sampling temperature to use. Higher values means the model will take more risks. Try 0.9 for more creative applications, and 0 (argmax sampling) for ones with a well-defined answer.
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <input type="range" id="temperature" min="0" max="1" step="0.1" value="1" oninput="temperature_output.value=value">
+              <output id="temperature_output">1</output>
+            </div>
+          </div>
+          <div class="col">
+            <div class="iconscontainer">
+              <b>Top P&nbsp;&nbsp;&nbsp;</b>
+              <div class="icon">
+                <h2><i class="fa-solid fa-circle-info fa-gradient" style="font-size: 20px;"></i></h2>
+                <span>
+                  An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <input type="range" id="top_p" min="0" max="1" step="0.1" value="1" oninput="top_p_output.value=value">  
+              <output id="top_p_output">1</output>  
+            </div>  
+          </div>
+          <div class="col">
+            <div class="iconscontainer">
+              <b>Frequency Penalty&nbsp;&nbsp;&nbsp;</b>
+              <div class="icon">
+                <h2><i class="fa-solid fa-circle-info fa-gradient" style="font-size: 20px;"></i></h2>
+                <span>
+                  Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <input type="range" id="freq_pen" min="-2" max="2" value="0" step="0.1" oninput="freq_pen_output.value=value">   
+              <output id="freq_pen_output">0</output>
+            </div>
+          </div>
+          <div class="col">
+            <div class="iconscontainer">
+              <b>Prescence Penalty&nbsp;&nbsp;&nbsp;</b>
+              <div class="icon">
+                <h2><i class="fa-solid fa-circle-info fa-gradient" style="font-size: 20px;"></i></h2>
+                <span>
+                  Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <input type="range" id="pres_pen" min="-2" max="2" value="0" step="0.1" oninput="pres_pen_output.value=value">   
+              <output id="pres_pen_output">0</output>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <h2>Responses</h2>
+        <h6 id="responseempty">Responses will appear below once the user enters prompts in the input above.</h6>
+        <div class="responses" id="responses">
+        </div>
+      </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
+
+    <script type='text/javascript' src="../static/javascript.js"></script>
+    <script type='text/javascript' src='../static/slider.js'></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+  </body>
+</html>

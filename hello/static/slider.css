@@ -1,0 +1,92 @@
+input,
+output {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1em;
+  font-family: "Poppins";
+}
+
+output {
+  background: #8f16ff;
+  padding: 5px;
+  border-radius: 3px;
+  color: white;
+  border: none;
+  width: 50px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 7px;
+    border-radius: 5px;
+    border: 1px solid #8f16ff;
+    background-repeat: no-repeat;
+    width: 50%;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #8f16ff;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #8f16ff;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+  }
+  
+  input[type="range"]::-ms-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #8f16ff;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb:hover {
+    background: #8f16ff;
+  }
+  
+  input[type="range"]::-moz-range-thumb:hover {
+    background: #8f16ff;
+  }
+  
+  input[type="range"]::-ms-thumb:hover {
+    background: #8f16ff;
+  }
+  
+  /* Input Track */
+  input[type=range]::-webkit-slider-runnable-track  {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+  
+  input[type=range]::-moz-range-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+  
+  input[type="range"]::-ms-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
