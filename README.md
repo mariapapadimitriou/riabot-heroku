@@ -8,5 +8,6 @@ This app was built using a django framework to handle the API calls in Python to
 3. Ordered from newest to oldest
 4. Settings options where users can select engine from a selection dropdown or change presets using range sliders
 5. Sample prompt suggestions provided on selection dropdown
+6. Responsive to screen size
 
 Check it out: https://ria-bot-ai-friend.herokuapp.com/
