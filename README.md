@@ -1,13 +1,5 @@
-# RiaBot: An Interface to interact with the GTP-3 OpenAI API!
+# RiaBot: An Interface to Interact with the GTP-3 OpenAI API!
 
-A barebones Django app, which can easily be deployed to Heroku.
+This app was built using a django framework to handle the API calls in Python to ensure the API key was not served client-side. The front-end interface was developed using HTML, CSS, and vanilla Javascript.
 
-This application supports the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out for instructions on how to deploy this app to Heroku and also run it locally.
-
-Alternatively, you can deploy it using this Heroku Button:
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-For more information about using Python on Heroku, see these Dev Center articles:
-
-- [Python on Heroku]([https://devcenter.heroku.com/categories/python](https://ria-bot-ai-friend.herokuapp.com/))
+Check it out: https://ria-bot-ai-friend.herokuapp.com/
