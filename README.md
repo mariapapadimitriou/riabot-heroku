@@ -1,4 +1,4 @@
-# Python: Getting Started
+# RiaBot: An Interface to interact with the GTP-3 OpenAI API!
 
 A barebones Django app, which can easily be deployed to Heroku.
 
@@ -10,4 +10,4 @@ Alternatively, you can deploy it using this Heroku Button:
 
 For more information about using Python on Heroku, see these Dev Center articles:
 
-- [Python on Heroku](https://devcenter.heroku.com/categories/python)
+- [Python on Heroku]([https://devcenter.heroku.com/categories/python](https://ria-bot-ai-friend.herokuapp.com/))
